@@ -13,8 +13,8 @@ class Note {
 
   Note({
     required this.id,
-    required this.title,
-    required this.content,
+    this.title,
+    this.content,
     required this.createdAt,
     required this.updatedAt,
   });

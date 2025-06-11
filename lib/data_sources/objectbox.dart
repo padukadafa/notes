@@ -12,6 +12,12 @@ class ObjectBox {
     return ObjectBox._create(store);
   }
 
+  void addNote(Note note) {
+    noteBox.put(
+      note.copyWith(createdAt: DateTime.now(), updatedAt: DateTime.now()),
+    );
+  }
+
   void deleteNote(int id) {
     noteBox.remove(id);
   }
@@ -26,7 +32,7 @@ class ObjectBox {
 
   Stream<List<Note>> getAllNotes() {
     final builder = noteBox.query()
-      ..order(Note_.createdAt, flags: Order.descending);
+      ..order(Note_.updatedAt, flags: Order.descending);
     return builder.watch(triggerImmediately: true).map((query) {
       return query.find();
     });

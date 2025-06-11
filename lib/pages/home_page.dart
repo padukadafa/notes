@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:notes/data_sources/objectbox.dart';
 import 'package:notes/di.dart';
 import 'package:notes/entities/note.dart';
+import 'package:notes/pages/note_page.dart';
 import 'package:notes/widgets/notes_list_item.dart';
 import 'package:notes/widgets/notes_search_input_widget.dart';
 import 'package:notes/widgets/reuseable_safe_area.dart';
@@ -14,7 +15,11 @@ class HomePage extends StatelessWidget {
     return ReuseableSafeArea(
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(
+              context,
+            ).push(MaterialPageRoute(builder: (_) => NotePage()));
+          },
           foregroundColor: Theme.of(context).colorScheme.onSurface,
           backgroundColor: Theme.of(context).colorScheme.surfaceContainerHigh,
           child: Icon(Icons.add),
@@ -51,7 +56,7 @@ class HomePage extends StatelessWidget {
                       child: ListView.builder(
                         itemCount: notes.length,
                         itemBuilder: (context, index) {
-                          return NotesListItemWidget();
+                          return NotesListItemWidget(note: notes[index]);
                         },
                       ),
                     );
