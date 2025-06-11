@@ -22,7 +22,7 @@ final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
     id: const obx_int.IdUid(1, 6640399691373768283),
     name: 'Note',
-    lastPropertyId: const obx_int.IdUid(5, 181446593713520599),
+    lastPropertyId: const obx_int.IdUid(6, 2050880883473748872),
     flags: 0,
     properties: <obx_int.ModelProperty>[
       obx_int.ModelProperty(
@@ -53,6 +53,12 @@ final _entities = <obx_int.ModelEntity>[
         id: const obx_int.IdUid(5, 181446593713520599),
         name: 'updatedAt',
         type: 10,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(6, 2050880883473748872),
+        name: 'colorCode',
+        type: 6,
         flags: 0,
       ),
     ],
@@ -128,12 +134,13 @@ obx_int.ModelDefinition getObjectBoxModel() {
         final contentOffset = object.content == null
             ? null
             : fbb.writeString(object.content!);
-        fbb.startTable(6);
+        fbb.startTable(7);
         fbb.addInt64(0, object.id);
         fbb.addOffset(1, titleOffset);
         fbb.addOffset(2, contentOffset);
         fbb.addInt64(3, object.createdAt.millisecondsSinceEpoch);
         fbb.addInt64(4, object.updatedAt.millisecondsSinceEpoch);
+        fbb.addInt64(5, object.colorCode);
         fbb.finish(fbb.endTable());
         return object.id;
       },
@@ -152,6 +159,12 @@ obx_int.ModelDefinition getObjectBoxModel() {
         final contentParam = const fb.StringReader(
           asciiOptimization: true,
         ).vTableGetNullable(buffer, rootOffset, 8);
+        final colorCodeParam = const fb.Int64Reader().vTableGet(
+          buffer,
+          rootOffset,
+          14,
+          0,
+        );
         final createdAtParam = DateTime.fromMillisecondsSinceEpoch(
           const fb.Int64Reader().vTableGet(buffer, rootOffset, 10, 0),
         );
@@ -162,6 +175,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
           id: idParam,
           title: titleParam,
           content: contentParam,
+          colorCode: colorCodeParam,
           createdAt: createdAtParam,
           updatedAt: updatedAtParam,
         );
@@ -197,5 +211,10 @@ class Note_ {
   /// See [Note.updatedAt].
   static final updatedAt = obx.QueryDateProperty<Note>(
     _entities[0].properties[4],
+  );
+
+  /// See [Note.colorCode].
+  static final colorCode = obx.QueryIntegerProperty<Note>(
+    _entities[0].properties[5],
   );
 }

@@ -6,6 +6,7 @@ class Note {
   int id;
   final String? title;
   final String? content;
+  final int colorCode;
   @Property(type: PropertyType.date)
   final DateTime createdAt;
   @Property(type: PropertyType.date)
@@ -15,6 +16,7 @@ class Note {
     required this.id,
     this.title,
     this.content,
+    required this.colorCode,
     required this.createdAt,
     required this.updatedAt,
   });
@@ -22,6 +24,7 @@ class Note {
     int? id,
     String? title,
     String? content,
+    int? colorCode,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) {
@@ -29,6 +32,7 @@ class Note {
       id: id ?? this.id,
       title: title ?? this.title,
       content: content ?? this.content,
+      colorCode: colorCode ?? this.colorCode,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
     );

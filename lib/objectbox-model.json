@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "1:6640399691373768283",
-      "lastPropertyId": "5:181446593713520599",
+      "lastPropertyId": "6:2050880883473748872",
       "name": "Note",
       "properties": [
         {
@@ -33,6 +33,11 @@
           "id": "5:181446593713520599",
           "name": "updatedAt",
           "type": 10
+        },
+        {
+          "id": "6:2050880883473748872",
+          "name": "colorCode",
+          "type": 6
         }
       ],
       "relations": []

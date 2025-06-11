@@ -6,7 +6,6 @@ import 'package:notes/pages/note_page.dart';
 import 'package:notes/providers/app_provider.dart';
 import 'package:notes/widgets/notes_list_item.dart';
 import 'package:notes/widgets/notes_search_input_widget.dart';
-import 'package:notes/widgets/reuseable_safe_area.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {

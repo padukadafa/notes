@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:notes/entities/note.dart';
@@ -13,7 +16,7 @@ class NotesListItemWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Material(
         borderRadius: BorderRadius.circular(12),
-        color: Theme.of(context).colorScheme.primaryContainer,
+        color: Color(note.colorCode),
 
         child: InkWell(
           borderRadius: BorderRadius.circular(12),
@@ -27,14 +30,28 @@ class NotesListItemWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(note.title ?? "Untitled", style: TextStyle(fontSize: 18)),
+                Text(
+                  note.title ?? "Untitled",
+                  style: TextStyle(fontSize: 18, color: Colors.black87),
+                ),
+                Builder(
+                  builder: (context) {
+                    final content = ParchmentDocument.fromJson(
+                      json.decode(note.content ?? "[]"),
+                    ).toPlainText().replaceAll("\n", "");
+                    return Text(
+                      content.isNotEmpty ? content : "No content",
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(fontSize: 14, color: Colors.black38),
+                    );
+                  },
+                ),
+
                 SizedBox(height: 18),
                 Text(
                   DateFormat("MMM dd,yyyy HH:mm").format(note.updatedAt),
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Theme.of(context).colorScheme.onPrimaryContainer,
-                  ),
+                  style: TextStyle(fontSize: 14, color: Colors.black54),
                 ),
               ],
             ),

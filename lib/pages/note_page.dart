@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:notes/data_sources/objectbox.dart';
 import 'package:notes/di.dart';
 import 'package:notes/entities/note.dart';
+import 'package:notes/utils/get_random_color.dart';
 
 class NotePage extends StatefulWidget {
   final Note? note;
@@ -33,7 +34,12 @@ class _NotePageState extends State<NotePage> {
       );
     } else {
       _controller = FleatherController();
-      note = Note(id: 0, createdAt: DateTime.now(), updatedAt: DateTime.now());
+      note = Note(
+        id: 0,
+        createdAt: DateTime.now(),
+        colorCode: getRandomNoteColor(),
+        updatedAt: DateTime.now(),
+      );
       titleController.text = '';
     }
     _controller.addListener(() {
@@ -65,7 +71,10 @@ class _NotePageState extends State<NotePage> {
           return;
         }
         if (note.id == 0) {
-          note = note.copyWith(createdAt: DateTime.now());
+          note = note.copyWith(
+            createdAt: DateTime.now(),
+            colorCode: getRandomNoteColor(),
+          );
         }
         if (note.id == 0) {
           note = note.copyWith(id: getIt<ObjectBox>().noteBox.put(note));
@@ -87,6 +96,18 @@ class _NotePageState extends State<NotePage> {
     return Scaffold(
       appBar: AppBar(
         actions: [
+          IconButton(
+            onPressed: () {
+              _controller.undo();
+            },
+            icon: Icon(Icons.undo),
+          ),
+          IconButton(
+            onPressed: () {
+              _controller.redo();
+            },
+            icon: Icon(Icons.redo),
+          ),
           Visibility(
             visible: widget.note != null,
             child: IconButton(
