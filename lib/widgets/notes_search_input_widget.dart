@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:notes/providers/app_provider.dart';
+import 'package:provider/provider.dart';
 
 class NotesSearchInputWidget extends StatelessWidget {
-  const NotesSearchInputWidget({super.key});
-
+  NotesSearchInputWidget({super.key});
+  final focus = FocusNode();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,6 +22,11 @@ class NotesSearchInputWidget extends StatelessWidget {
           ),
           Expanded(
             child: TextField(
+              focusNode: focus,
+              onTapOutside: (_) => focus.unfocus(),
+              onChanged: (value) {
+                context.read<AppProvider>().setSearchQuery(value);
+              },
               decoration: InputDecoration(
                 hintText: 'Search notes...',
                 border: InputBorder.none,
