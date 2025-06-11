@@ -4,9 +4,10 @@
 
 <h2>Project Screenshots:</h2>
 
-<img src="https://github.com/padukadafa/notes/blob/main/screenshots/screenshot1.jpeg?raw=true" alt="project-screenshot" width="200" height="400/">
-<img src="https://github.com/padukadafa/notes/blob/main/screenshots/screenshot2.jpeg?raw=true" alt="project-screenshot" width="200" height="400/">
-
+<div>
+  <img src="https://github.com/padukadafa/notes/blob/main/screenshots/screenshot1.jpeg?raw=true" alt="project-screenshot" width="200" height="400/">
+  <img src="https://github.com/padukadafa/notes/blob/main/screenshots/screenshot2.jpeg?raw=true" alt="project-screenshot" width="200" height="400/">
+</div>
 <h2>🧐 Features</h2>
 
 Here're some of the project's best features:
