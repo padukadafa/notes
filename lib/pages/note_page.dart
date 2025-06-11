@@ -113,8 +113,33 @@ class _NotePageState extends State<NotePage> {
             child: IconButton(
               icon: Icon(Icons.delete),
               onPressed: () {
-                getIt<ObjectBox>().deleteNote(widget.note!.id);
-                Navigator.of(context).pop();
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: Text('Delete Note'),
+                      content: Text(
+                        'Are you sure you want to delete this note?',
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            getIt<ObjectBox>().deleteNote(note.id);
+                            Navigator.of(context).pop();
+                            Navigator.of(context).pop();
+                          },
+                          child: Text('Delete'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text('Cancel'),
+                        ),
+                      ],
+                    );
+                  },
+                );
               },
             ),
           ),
